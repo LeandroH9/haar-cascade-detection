@@ -1,0 +1,24 @@
+
+-> No rosto humano é possivel verificar padrões de iluminação, onde uma parte é clara e outra é escura. 
+
+->features de haar -> mascara -> caracteristicas -> quadradinhos
+
+-> essas features vão caminhar durante toda a imagem, captando alguns padrões. 
+
+COMO O ALGORITMO ENCONTRA O ROSTO?
+	Vai ser criado uma janela/sub-regiao que tem normalmente 24x24 pixels e passar por toda imagem, aplicando as features de haar.
+  	Cada subjanela é realizada 160.000 mil features de haar. Este processo é muito custoso.
+
+PRECISAMOS OTIMIZAR ESTE PROCESSO. 
+
+ADABOST
+-> é responsável por pegar estas 160.000 features de haar e selecionar as mais uteis para detectar faces.
+Ex: temos um featuras de haar que obtem um resultado compativel com o nariz de uma pessoa, vai retornar 1. Agora uma features de haar em um lugar errado, vai dar uma saida 0, ou seja, vai ser um classificador fraco.
+
+-> Se uma parte for compativel com o que aquela features se propoem, vai ter saida 1. 
+A soma de todos estes classificadores fracos, vai dar o classificador forte. Se a soma for maior que um valor, aquilo vai ser uma face.
+-> ainda é muito custoso
+
+ESTRUTURA EM CASCADA
+-> 
+ 	
