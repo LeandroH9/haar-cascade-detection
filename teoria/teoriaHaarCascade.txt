@@ -1,0 +1,41 @@
+Classificador Cascade
+
+1) Temos um conjunto de imagens que tem o objeto (positivas) e outro conjunto que não tem o objeto (negativas).
+
+2) Treinamento com AdaBoost -> seleção de características
+
+3) Cascade
+
+Haar -> caracteristicas -> quadradinhos
+
+Haar cascades
+É um conjunto de caracteristicas (bordas, linhas e centros)  
+-> Combinação de features haar (quadradinhos) para formar um classificador
+-> padrão retangular nos dados
+-> diferenças na intensidade das regiões retangulares da imagem 
+
+* Estas caracteristicas haar vai andar pela imagem, pixel por pixel. Então aplica-se na imagem.
+  -> vão ser realizados operações (soma pixels brancos - soma pixels pretos)
+  -> estes haar podem ter variações (diferentes caracteristicas haar)
+
+EM UMA IMAGEM 24X24 temos 576 pixels no total. Logo, multiplicamento por toda a variadade de caracteristicas haar, temos 160.000 combinações diferentes. 
+
+AdaBoost
+É responsável por selecionar por conta própria quais feactures de haar que são boas para o problema. 
+->Algoritmo para remover as caracteristicas não necessárias.
+-> Combina vários classificadores fracos (um quadradinho) em um classificador forte (varias quadradinhos combinados)
+-> de 160.000 mil caracteristicas, ele vai escolher 6.000 somente. 
+
+Cascade
+-> desliza pela imagem
+-> computa a média dos valores dos pixels na área branca e preta, teremos uma nova imagem.
+-> se a diferença entre as áreas é abaixo de um limiar, a característica coincide (match)
+-> aprendizagem supervisionada: indica para o classificador quem é quem. Ajuda o algoritmo a encontrar padrões. 
+-> dado uma imagem, temos classificadores que passam por um processo de cascada. A imagem vai indo de um nível para o outro. Se não existir a caracteristica, retorna false.
+-> Tem que passar em todas as caracteristicas 
+
+
+
+
+HAAR -> quadradinhas -> caracteristicas
+Cascade -> processo de percorrer a imagem, verificando estas caracteristicas

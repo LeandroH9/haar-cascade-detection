@@ -1,0 +1,66 @@
+PASSOS PARA CRIAÇÃO DE UM CLASSIFICADOR HAAR CASCADES 
+
+Etapa 1 - Escolher o objeto
+
+1) Objetos mais rigidos: logo -> mais rapido o treinamento
+2) Objetos com grandes variações: cadeiras, copos, celulares -> mais lento o treinamento
+
+* Objetos que possuem uma quantidade muito grande de variações vão exigir uma grande quantidade de imagens para o treinamento. 
+
+* Ao treinar tantas variações pode ser que o classificador fique mais fraco como um todo. Ex: um carro pode ter diversas posições e modelos 
+
+* Objetos que a cor é um fator fundamental para diferenciar também não são recomendados. Porque as imagens vão ser transformadas em escola de cinza
+
+Etapa 2 - Selecionar imagens negativas
+
+* Imagens que não contém o objeto a ser reconhecido
+
+* De preferência devem ser maiores que as imagens positivas, especialmente se vão ser criadas amostras.
+
+* Podem ser fotos de qualquer outra coisa que não seja o objeto procurado.
+
+* Fotos de prováveis fundos do objeto a ser detectado (não é obrigatório)
+
+* Ainda assim recomenda-se usar também imagens de outros objetos aleatórios
+
+EM CÂMERAS DE SEGURANÇA não é necessário ter uma grande variedade de imagens negativas, pois o fundo sempre será o mesmo. 
+
+Etapa 3 - Selecionar imagens positivas
+
+* selecionar imagens que contém o objeto a ser reconhecido
+
+* Quantas imagens positivas? DEPENDE 
+    -> qualidade das imagens
+    -> tipo do objeto a ser reconhecido 
+    -> poder computacionaar disponível 
+
+* Tamanho das imagens?
+    -> definir um tamanho unico para todas as imagens
+    -> não precisa ser necessariamente quadrada, a largura e altura podem ser diferentes
+    -> é recomendado que o maior lado não ultrapasse 30px para não elevar muito o tempo de treinamento (recomendamos no máximo 25px)
+    -> a proporção precisa ser a mesma para todas as imagens
+    -> Caso seja necessário treinar com imagens maiores para captar muitos detalhes o processamento pode chegar a levar dias ou semanas
+Exemplos: 25x25(1:1), 24x20(1:1,2), 20x10(2:1), 10x20(1:2)
+
+* As imagens positivas devem estar de acordo com o objetivo do classificador
+
+Ex: detectar carros usando câmeras de segurança: as imagens de carros devem ser tirados de um ângulo de cima
+
+Ex: detectar carros da visão de um pedestre: as imagens de carros devem ser tiradas de frente
+
+* Adicionar imagens de carros vistos de lado. Porém, todas as imagens positivas serão redimensionadas para um tamanho único na etapa de treinamento
+
+* Todas as imagens positivas devem ter a mesma proporção(50x50, 100x100, 25x25)
+
+* Na etapa de preparação de treinamento todas serão redimensionadas para ter o mesmo tamanho. Então se uma imagem for retangular, o openCV achatará a imagem(ou alongar), descaracterizando o objeto. 
+
+* Solução: criar dois classificadores distintos: um para carros de frente/trás e outro para carros de lado.
+
+TEMPO DE TREINAMENTO
+
+* depende do tamanho da imagem
+* quantidade de imagens positivas e negativas
+* estágios
+* memória disponível 
+* processamento
+    
