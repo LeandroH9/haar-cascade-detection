@@ -1,14 +1,20 @@
+Plataformas indicam que deve ter o dobro de imagens positivas em relação a negativas.
+
+
+
 1) imagens de repositórios e bases de imagens da internet http://image-net.org/
 
-2) criação de imagens a partir do método "createsamples"
+2) criação de imagens a partir do método "createsamples": Essa abordagem pega uma imagem de objeto único com, por exemplo, o logotipo de uma empresa e cria um grande conjunto de amostras positivas a partir da imagem de objeto dada, girando aleatoriamente o objeto, mudando a intensidade da imagem, bem como colocando a imagem em fundos arbitrários. A quantidade e o intervalo de aleatoriedade podem ser controlados por argumentos de linha de comando do aplicativo opencv_createsamples.
 
-3) fotos já existentes (vc já tem suas próprias fotos)
+3) busca direta e manual de imagens (sites de pesquisa - ex: google imagens) 
+-> o ideal é 1000 a 5000 imagensfotos já existentes (vc já tem suas próprias fotos)
 
-4) busca direta e manual de imagens (sites de pesquisa - ex: google imagens) 
--> o ideal é 1000 a 5000 imagens
+4) MÉTODO UTILIZADO: fotos já existentes (vc já tem suas próprias fotos)
 
 Caso estas imagens já tenham fundo (não transparente) é preciso utilizar o arquivo opencv_annotation. Com ele voce indica em qual local da imagem tem o objeto. Ele vai criar um arquivo lst que contem as marcações. 
 Obs: todos as imagens devem ter o mesmo tamanho e estar na escala grayscale 
+
+
 
 "Viola e Jones (2004) usaram 4916 imagens positivas e 9500 imagens negativas,
 posteriormente, Lienhart, Kuranov e Pisarevsky (2003) concluíram que, nas condições

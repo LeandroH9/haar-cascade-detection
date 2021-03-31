@@ -1,0 +1,52 @@
+MELHORIAS
+-> dobro de positivas em relação as negativas
+-> se há muitos falsos positivas é preciso adicionar mais imagens negativas
+-> se há muitos falsos negativos é preciso adicionar mais imagens positivas ou ajustas os parametros.
+
+Para um classificador mais robusto: colotar imagens manualmente e em vários cenários.
+
+Para objetos mais rígidos (logos) pode-se usar somente o createsamples
+
+. Ao aumentar o número de imagens positivas vai aumentar a generalização do modelo (melhores características que descrevam o objeto)
+
+. em imagens nas quais o objeto está um pouco diferente do modelo treinado o algoritmo tem mais chances para encontrar o objeto.
+
+. Evita o sobreajuste (overfitting) do modelo, que ocorre quando o modelo se ajusta tão bem a esse conjunto de imagens de treinamentos é ineficaz para prever novos resultados.
+
+* -minHitRate 0.999 -maxFalseAlarmRate 0.1 -maxWeakCount 1000
+
+-minHitRate:
+... quanto mais perto do 1 melhor
+... Indica a taxa de acerto mínima desejada para cada estágio do classificador
+... Resultados melhores com valores maiores, ou seja, quanto mais próximo do 1 melhor
+... um bom valor usado para testes é 0,998
+
+
+-minFalseAlarmRate
+...quanto menor o valor melhor
+...taxa máxima de alarme falso desejado para cada estágio do classificador (definição de quantos recursos precisar ser adicionados)
+... a ideia é que cada classificador fraco tenha uma taxa de acertos muito boa nos pontos positivos e, em seguida, permita que eles removam "janelas" negativas o mais rápido possível com uma adivinhação melhor do que a aleatória. 
+... o valor 0.5 significa que é aplicado um palpite aleatório. Melhor do que isso, significa que são removidas com sucesso as janelas negativas muito cedo, usando apenas algumas avaliações de recursos, permitindo que outros negativos sejam descartados pelos estágios seguintes. 
+
+-> -maxWeakCount = quando maior o valor melhor (quantidade de classificadores fracos)
+
+-> O tempo de treinamento pode ficar extremamente lento se usar estes atributos. Principalemnte quando começa chegar nos últimos estágios. 
+
+
+Considerações haarcascades
+. executa rápido (vários detectores pela webcam)
+. recomendável para objetos com pouco variação (logos) - poucas imagens para o treinamento
+. não muito recomendável para objetos com uma grande variação
+ -> celular ligado, com capinha
+ -> treinando muitas variações o classificador pode ficar fraco
+  -> objetos que a cor é determinante 
+ -> canecas com estampa diferente 
+ -> necessárias muitas imagens e testes
+
+Outras técnicas
+. HOG + SSVM (dLIB)
+. Redes Neurais Convolucioanis
+
+
+
+
